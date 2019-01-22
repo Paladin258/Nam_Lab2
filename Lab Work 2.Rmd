@@ -1,0 +1,73 @@
+---
+title: "Lab Work 2"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+setwd("~/Google Drive/Documents/PHD documents/Classes/Advanced Bioinformatics/Lab2/lab2data")
+```
+
+#1)How do you ask if a file exists?
+
+```{r}
+file.exists('data')
+```
+
+#2)How to you ask if a file is a directory?
+```{r}
+file_test("-d", 'data')
+```
+
+#3)How do you remove (delete) a file?
+```{r}
+file.remove('test')
+```
+
+#4)How do you get the size of a file?
+```{r}
+file.info('data')
+```
+
+#5)How do you get all the file names matching a pattern?
+```{r}
+list.files(path="data/", pattern= 'txt')
+```
+
+#6)How do you get all the file names matching a pattern recursively?
+```{r}
+list.files(pattern = "*", recursive = TRUE)
+```
+
+#8)How do you open gzip-compressed files for reading and for writing?
+```{r}
+file <- read.csv(zip.file.extract(file, zipname="R.zip")
+```
+
+#Checking which files are missing:
+
+#Create a list of files:
+```{r}
+a <- list.files(path="data/", pattern= 'a.txt')
+b <- list.files(path="data/", pattern= 'b.txt')
+output = list.files(path="output/", pattern= '*')
+
+```
+
+#Create a theoretical list of output files that are supposed to be present:
+```{r}
+result <- list()
+for (i in 1:length(a))
+{result[i] <- paste('outfile.',i,'.a.out',sep='')}
+for (i in 1:length(b))
+{result[50+i] <- paste('outfile.',i,'.b.out',sep='')}
+```
+
+#Compare and print the output files that are missing from the theoretical list:
+```{r}
+result[!(result %in% output)]
+```
+
